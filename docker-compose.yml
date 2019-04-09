@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:8.0.13
+    container_name: mysql
+    restart: always
+    environment:
+      - MYSQL_DATABASE=crowdsource
+      - MYSQL_ROOT_PASSWORD=root
+      - TZ=Asia/Shanghai
+    ports:
+      - 3306:3306
+    networks:
+      - infra
+  redis:
+    image: redis:4.0.12
+    container_name: redis-master
+    restart: always
+    ports:
+      - 6379:6379
+    networks:
+      - infra
+
+networks: 
+  infra:
