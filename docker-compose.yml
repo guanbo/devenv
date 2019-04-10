@@ -21,6 +21,18 @@ services:
       - 6379:6379
     networks:
       - infra
+  nginx:
+    image: nginx
+    container_name: nginx
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+      - 3000:3000
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - infra
 
 networks: 
   infra:

@@ -45,3 +45,31 @@ $ git clone https://github.com/guanbo/devenv.git
 $ cd devenv
 $ docker-compose up -d
 ```
+
+### Add Reverse Proxy
+
+```sh
+$ cd nginx/conf.d/
+$ cp example.com.conf mydomain.com.conf
+# edit mydomain.com.conf and save
+$ docker restart nginx
+```
+
+## Let's encrypt certificates
+
+### Install
+
+```sh
+$ wget https://dl.eff.org/certbot-auto
+$ chmod a+x certbot-auto
+$ sudo mv certbot-auto /usr/local/bin
+```
+
+### Generate Certificate
+
+```sh
+$ certbot-auto certonly --manual --preferred-challenges "dns"  --agree-tos --no-bootstrap \
+  -d *.example.com,*.dev.example.com \
+  -m email@example.com
+  --cert-name example.com
+```
