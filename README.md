@@ -60,7 +60,7 @@ $ cd devenv
 $ docker-compose up -d
 ```
 
-### Add Reverse Proxy
+### Web Deploy by Nginx
 
 ```sh
 $ cd nginx/conf.d/
@@ -69,6 +69,7 @@ $ cp example.com.conf mydomain.com.conf
 $ docker exec -t nginx /etc/init.d/nginx reload
 # grant gitlab-runner cp static html to nginx/html
 $ sudo usermod -aG ec2-user gitlab-runner
+$ chmod 750 ~
 ```
 
 ## Let's encrypt certificates
