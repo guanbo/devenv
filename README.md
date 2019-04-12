@@ -38,6 +38,20 @@ Default output format [json]:
 ```
 AWS id and key are not necessary to be set, because of iam role has already provided.
 
+
+### Intall Node.js
+
+```sh
+$ curl -OL https://nodejs.org/dist/v10.15.3/node-v10.15.3-linux-x64.tar.xz
+$ tar -xvf node-v10.15.3-linux-x64.tar.xz
+$ cd node-v10.15.3-linux-x64
+$ sudo cp bin/node /usr/bin/
+$ sudo cp include/* /usr/include/
+$ sudo cp lib/* /usr/lib/
+$ sudo cp share/* /usr/share/
+$ sudo ln -s /usr/lib/node_modules/npm/bin/npm-cli.js /usr/bin/npm
+```
+
 ## Quick Start
 
 ```shell
@@ -52,7 +66,9 @@ $ docker-compose up -d
 $ cd nginx/conf.d/
 $ cp example.com.conf mydomain.com.conf
 # edit mydomain.com.conf and save
-$ docker restart nginx
+$ docker exec -t nginx /etc/init.d/nginx reload
+# grant gitlab-runner cp static html to nginx/html
+$ sudo usermod -aG ec2-user gitlab-runner
 ```
 
 ## Let's encrypt certificates

@@ -31,6 +31,7 @@ services:
       - 3000:3000
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/html:/usr/share/nginx/html
     networks:
       - infra
 
