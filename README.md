@@ -60,7 +60,11 @@ $ cd devenv
 $ docker-compose up -d
 ```
 
-### Web Deploy by Nginx
+### Gitlab
+
+- [Startup Gitlab](gitlab/README.md)
+
+### ~~Web Deploy by Nginx~~
 
 ```sh
 $ cd nginx/conf.d/
@@ -70,23 +74,4 @@ $ docker exec -t nginx /etc/init.d/nginx reload
 # grant gitlab-runner cp static html to nginx/html
 $ sudo usermod -aG ec2-user gitlab-runner
 $ chmod 750 ~
-```
-
-## Let's encrypt certificates
-
-### Install
-
-```sh
-$ wget https://dl.eff.org/certbot-auto
-$ chmod a+x certbot-auto
-$ sudo mv certbot-auto /usr/local/bin
-```
-
-### Generate Certificate
-
-```sh
-$ certbot-auto certonly --manual --preferred-challenges "dns"  --agree-tos --no-bootstrap \
-  -d *.example.com,*.dev.example.com \
-  -m email@example.com
-  --cert-name example.com
 ```

@@ -7,3 +7,4 @@ npm-debug.log
 
 nginx/conf.d/
 nginx/html/
+gitlab/docker-compose.yml
