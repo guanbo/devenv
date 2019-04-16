@@ -5,6 +5,7 @@ npm-debug.log
 */obj
 .vscode
 
-nginx/conf.d/
-nginx/html/
+gitlab/nginx/vhost/
+gitlab/nginx/html/
+gitlab/ssl/
 gitlab/docker-compose.yml
