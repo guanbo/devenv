@@ -10,8 +10,6 @@ sed "s/example.com/$DOMAIN_NAME/" gitlab.yml > docker-compose.yml
 read -p 'GITLAB_EMAIL_PASSWORD: ' GITLAB_EMAIL_PASSWORD
 echo "export GITLAB_EMAIL_PASSWORD=$GITLAB_EMAIL_PASSWORD" >> ~/.bashrc
 
-docker-compose up -d 
-
 echo "Setup crontab for backup..."
 if [ "$(crontab -l|grep -c 'gitlab:backup:create')" -eq 0 ]
 then
@@ -21,3 +19,8 @@ EOF
 fi
 
 crontab -l
+
+echo "=============================="
+echo "Install OK"
+echo "Start up: docker-compose up -d"
+echo "Or edit docker-compose.yml and go"
