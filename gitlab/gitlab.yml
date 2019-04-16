@@ -5,7 +5,7 @@ services:
   gitlab:
     image: gitlab/gitlab-ce:11.9.8-ce.0
     restart: always
-    constainer_name: gitlab
+    container_name: gitlab
     ports:
       - '80:80'
       - '443:443'
