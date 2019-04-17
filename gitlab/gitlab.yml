@@ -89,3 +89,4 @@ services:
 
 networks:
   gitlab:
+    name:  gitlab
