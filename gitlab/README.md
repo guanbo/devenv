@@ -14,6 +14,14 @@ $ echo '/dev/xvdb /srv/docker ext4 defaults,nofail 0 2' | sudo tee -a /etc/fstab
 $ sudo mount -a
 ```
 
+### S3 Bucket
+
+create `gitlab.example.com` bucket for [gitlab.yml](gitlab.yml), it should include follow subdirectory:
+- artifacts
+- lfs
+- uploads
+- backup
+
 ## Install
 
 ```sh
@@ -31,7 +39,7 @@ docker exec -it gitlab gitlab-ctl status
 docker exec -it gitlab gitlab-rake gitlab:check SANITIZE=true
 ```
 
-## Update SSL Certificates
+## SSL Certificates
 
 ### Install Let' encrypt
 
@@ -51,4 +59,16 @@ $ certbot-auto certonly --manual --preferred-challenges "dns"  --agree-tos --no-
 
 $ sudo cp /etc/letsencrypt/live/example.com/fullchain.pem ~/lab/ssl/wildcard.example.com.crt
 $ sudo cp /etc/letsencrypt/live/example.com/privkey.pem ~/lab/ssl/wildcard.example.com.key
+```
+
+## Upgrade Gitlab
+
+```shell
+docker pull gitlab/gitlab-ce:11.9.8-ce.0
+vim docker-compose.yml
+# image: gitlab/gitlab-ce:11.0.0-ce.0 => image: gitlab/gitlab-ce:11.9.8-ce.0
+docker-compose down
+docker-compose up -d
+docker exec -it lab_gitlab_1 gitlab-rake db:migrate
+docker restart lab_gitlab_1
 ```

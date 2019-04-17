@@ -17,7 +17,7 @@ services:
         gitlab_rails['time_zone'] = 'Beijing'
         gitlab_rails['artifacts_object_store_enabled'] = true
         gitlab_rails['artifacts_object_store_direct_upload'] = true
-        gitlab_rails['artifacts_object_store_remote_directory'] = "artifacts.gitlab.example.com"
+        gitlab_rails['artifacts_object_store_remote_directory'] = "gitlab.example.com/artifacts"
         gitlab_rails['artifacts_object_store_connection'] = {
           'provider' => 'AWS',
           'region' => 'cn-northwest-1',
@@ -26,7 +26,7 @@ services:
         }
         gitlab_rails['lfs_object_store_enabled'] = true
         gitlab_rails['lfs_object_store_direct_upload'] = true
-        gitlab_rails['lfs_object_store_remote_directory'] = "lfs.gitlab.example.com"
+        gitlab_rails['lfs_object_store_remote_directory'] = "gitlab.example.com/lfs"
         gitlab_rails['lfs_object_store_connection'] = {
           'provider' => 'AWS',
           'region' => 'cn-northwest-1',
@@ -35,7 +35,7 @@ services:
         }
         gitlab_rails['uploads_object_store_enabled'] = true
         gitlab_rails['uploads_object_store_direct_upload'] = true
-        gitlab_rails['uploads_object_store_remote_directory'] = "uploads.gitlab.example.com"
+        gitlab_rails['uploads_object_store_remote_directory'] = "gitlab.example.com/uploads"
         gitlab_rails['uploads_object_store_connection'] = {
           'provider' => 'AWS',
           'region' => 'cn-northwest-1',
@@ -43,7 +43,7 @@ services:
           'host' => 's3.cn-northwest-1.amazonaws.com.cn'
         }
         gitlab_rails['backup_keep_time'] = 259200
-        gitlab_rails['backup_upload_remote_directory'] = 'backup.gitlab.example.com'
+        gitlab_rails['backup_upload_remote_directory'] = 'gitlab.example.com/backup'
         gitlab_rails['backup_upload_connection'] = {
           'provider' => 'AWS',
           'region' => 'cn-northwest-1',

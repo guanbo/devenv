@@ -4,7 +4,7 @@ cd $(dirname $0)
 
 echo "Start install gitlab..."
 
-read -p 'domain name: ' DOMAIN_NAME
+read -p 'DOMAIN_NAME: ' DOMAIN_NAME
 sed "s/example.com/$DOMAIN_NAME/" gitlab.yml > docker-compose.yml
 
 read -p 'GITLAB_EMAIL_PASSWORD: ' GITLAB_EMAIL_PASSWORD
