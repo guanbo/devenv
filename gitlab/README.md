@@ -22,6 +22,10 @@ create `gitlab.example.com` bucket for [gitlab.yml](gitlab.yml), it should inclu
 - uploads
 - backup
 
+#### Auto delete old data
+create life rule for `backup` prefix, delete s3 objects after 7days.
+
+
 ## Install
 
 ```sh

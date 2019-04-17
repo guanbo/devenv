@@ -5,7 +5,6 @@
 - buy your domain such as: `example.com`
 - configure smtp server, such as: `smtp.exmail.qq.com`
 - register eamil account `redmine@example.com` for send email
-- s3 bucket `redmine.example.com` and subdirectory `backup` for backup
 
 ## Install
 

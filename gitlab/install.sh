@@ -5,7 +5,13 @@ cd $(dirname $0)
 echo "Start install gitlab..."
 
 read -p 'DOMAIN_NAME: ' DOMAIN_NAME
-sed "s/example.com/$DOMAIN_NAME/" gitlab.yml > docker-compose.yml
+# domain_dash=${DOMAIN_NAME//./-}
+gitlab_bucket=gitlab.${DOMAIN_NAME}
+if [ $(aws s3api head-bucket --bucket $gitlab_bucket 2>&1|grep -c 404) -gt 0 ] 
+then
+  aws s3 mb s3://$gitlab_bucket
+fi
+sed -e "s/example.com/$DOMAIN_NAME/" gitlab.yml > docker-compose.yml
 
 read -p 'GITLAB_EMAIL_PASSWORD: ' GITLAB_EMAIL_PASSWORD
 echo "export GITLAB_EMAIL_PASSWORD=$GITLAB_EMAIL_PASSWORD" >> ~/.bashrc
