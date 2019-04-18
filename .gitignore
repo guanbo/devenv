@@ -10,3 +10,5 @@ gitlab/nginx/html/
 gitlab/ssl/
 gitlab/docker-compose.yml
 redmine/configuration.yml
+
+data/

@@ -57,6 +57,7 @@ $ sudo ln -s /usr/lib/node_modules/npm/bin/npm-cli.js /usr/bin/npm
 ```shell
 $ git clone https://github.com/guanbo/devenv.git
 $ cd devenv
+$ mkdir -p data/mysql
 $ docker-compose up -d
 ```
 

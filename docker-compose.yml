@@ -9,6 +9,8 @@ services:
       - MYSQL_DATABASE=crowdsource
       - MYSQL_ROOT_PASSWORD=root
       - TZ=Asia/Shanghai
+    volumes:
+      - name: ./data/mysql:/var/lib/mysql
     ports:
       - 3306:3306
     networks:
