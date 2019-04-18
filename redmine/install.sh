@@ -23,8 +23,8 @@ echo "Setup crontab for backup..."
 crontab -l > crontab.tmp
 if [ "$(grep -c 'redmine_mysql mysqldump' crontab.tmp)" -eq 0 ]
 then
-  echo '0   3    * * *   docker exec redmine_mysql mysqldump -p51wuzi redmine > redmine-backup && aws s3 mv --region cn-northwest-1 redmine-backup s3://${redmine_bucket}/$(date +\%F)' >> crontab.tmp
-  echo '*/1 8-23 * * 1-5 docker exec redmine rake redmine:fetch_changesets' >> crontab.tmp
+  echo "0   3    * * *   docker exec redmine_mysql mysqldump -p51wuzi redmine > redmine-backup && aws s3 mv --region cn-northwest-1 redmine-backup s3://${redmine_bucket}/\$(date +\%F)" >> crontab.tmp
+  echo "*/1 8-23 * * 1-5 docker exec redmine rake redmine:fetch_changesets" >> crontab.tmp
   crontab crontab.tmp
 fi
 rm crontab.tmp
