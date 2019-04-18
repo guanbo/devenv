@@ -84,6 +84,7 @@ services:
       - ./ssl:/etc/gitlab/ssl
       - ./nginx/vhost:/var/opt/gitlab/nginx/vhost
       - ./nginx/html:/var/opt/gitlab/nginx/html
+      - /etc/letsencrypt:/var/opt/gitlab/nginx/letsencrypt
     networks:
       - gitlab
 
