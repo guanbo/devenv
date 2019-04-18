@@ -26,6 +26,9 @@ fi
 
 crontab -l
 
+echo "Create let's encrypt directory"
+sudo mkdir -p /etc/letsencrypt
+
 echo "=============================="
 echo "Install OK"
 echo "Start up: docker-compose up -d"

@@ -11,8 +11,8 @@ server {
   ## Strong SSL Security
   ## https://raymii.org/s/tutorials/Strong_SSL_Security_On_nginx.html & https://cipherli.st/
   ssl on;
-  ssl_certificate /etc/gitlab/ssl/wildcard.example.com.crt;
-  ssl_certificate_key /etc/gitlab/ssl/wildcard.example.com.key;
+  ssl_certificate /var/opt/gitlab/nginx/letsencrypt/live/example.com/fullchain.pem;
+  ssl_certificate_key /var/opt/gitlab/nginx/letsencrypt/live/example.com/privkey.key;
 
   ## Backwards compatible ciphers to retain compatibility with Java IDEs
   ssl_ciphers 'ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4';
@@ -57,11 +57,11 @@ server {
 }
 
 server {
-    listen *:443;
-    server_name  admin.dev.example.com;
-    location / {
-    	root /var/opt/gitlab/nginx/html/admin.dev.example.com;
-    }
+  listen *:443;
+  server_name  admin.dev.example.com;
+  location / {
+    root /var/opt/gitlab/nginx/html/admin.dev.example.com;
+  }
 }
 
 # server {

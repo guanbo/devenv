@@ -51,6 +51,7 @@ docker exec -it gitlab gitlab-rake gitlab:check SANITIZE=true
 $ wget https://dl.eff.org/certbot-auto
 $ chmod a+x certbot-auto
 $ sudo mv certbot-auto /usr/local/bin
+$ certbot-auto --no-bootstrap
 ```
 
 ### Generate Certificate
@@ -58,7 +59,7 @@ $ sudo mv certbot-auto /usr/local/bin
 ```sh
 $ certbot-auto certonly --manual --preferred-challenges "dns"  --agree-tos --no-bootstrap \
   -d *.example.com,*.dev.example.com \
-  -m email@example.com
+  -m email@example.com \
   --cert-name example.com
 
 $ sudo cp /etc/letsencrypt/live/example.com/fullchain.pem ~/lab/ssl/wildcard.example.com.crt
