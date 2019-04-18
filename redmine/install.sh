@@ -20,13 +20,13 @@ read -p 'REDMINE_DB_PASSWORD: ' REDMINE_DB_PASSWORD
 echo "export REDMINE_DB_PASSWORD=$REDMINE_DB_PASSWORD" >> ~/.bashrc
 
 echo "Setup crontab for backup..."
-if [ "$(crontab -l|grep -c 'redmine_mysql')" -eq 0 ]
+crontab -l > crontab.tmp
+if [ "$(grep -c 'gitlab:backup:create' crontab.tmp)" -eq 0 ]
 then
-  crontab -l;cat << EOF | crontab -
-0   3    * * *   docker exec redmine_mysql mysqldump -p${REDMINE_DB_PASSWORD} redmine > redmine-backup && aws s3 mv --region cn-northwest-1 redmine-backup s3://${redmine_bucket}/\$(date +\\%F)
-*/1 8-23 * * 1-5 docker exec redmine rake redmine:fetch_changesets
-EOF
+  echo '0   4    * * *   docker exec gitlab gitlab-rake gitlab:backup:create CRON=1' >> crontab.tmp
+  crontab crontab.tmp
 fi
+rm crontab.tmp
 
 crontab -l
 

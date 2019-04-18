@@ -3,6 +3,13 @@
 cd $(dirname $0)
 
 echo "Start install gitlab..."
+crontab -l > crontab.tmp
+if [ "$(grep -c 'gitlab:backup:create' crontab.tmp)" -eq 0 ]
+then
+  echo '0   4    * * *   docker exec gitlab gitlab-rake gitlab:backup:create CRON=1' >> crontab.tmp
+  crontab crontab.tmp
+fi
+rm crontab.tmp
 
 read -p 'DOMAIN_NAME: ' DOMAIN_NAME
 # domain_dash=${DOMAIN_NAME//./-}
@@ -17,12 +24,13 @@ read -p 'GITLAB_EMAIL_PASSWORD: ' GITLAB_EMAIL_PASSWORD
 echo "export GITLAB_EMAIL_PASSWORD=$GITLAB_EMAIL_PASSWORD" >> ~/.bashrc
 
 echo "Setup crontab for backup..."
-if [ "$(crontab -l|grep -c 'gitlab:backup:create')" -eq 0 ]
+crontab -l > crontab.tmp
+if [ "$(grep -c 'gitlab:backup:create' crontab.tmp)" -eq 0 ]
 then
-  crontab -l;cat << EOF | crontab -
-0   4    * * *   docker exec gitlab gitlab-rake gitlab:backup:create CRON=1
-EOF
+  echo '0   4    * * *   docker exec gitlab gitlab-rake gitlab:backup:create CRON=1' >> crontab.tmp
+  crontab crontab.tmp
 fi
+rm crontab.tmp
 
 crontab -l
 
