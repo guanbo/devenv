@@ -58,9 +58,13 @@ server {
 
 server {
   listen *:443;
-  server_name  admin.dev.example.com;
+  server_name  ~(?P<sub>.+)+\.example\.com$;
   location / {
-    root /var/opt/gitlab/nginx/html/admin.dev.example.com;
+    if ($sub ~ /^(dev|stage)/) {
+      proxy_pass http://${sub}-container;
+    } else {
+      root /var/opt/gitlab/nginx/html/$sub.example.com;
+    }
   }
 }
 
