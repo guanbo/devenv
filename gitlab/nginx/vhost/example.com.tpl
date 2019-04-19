@@ -1,7 +1,7 @@
 server {
   listen *:443 ssl http2;
 
-  server_name www.example.com;
+  server_name ~dev\.example\.com$;
   server_tokens off; ## Don't show the nginx version number, a security best practice
 
   ## Increase this if you want to upload large attachments
@@ -52,19 +52,10 @@ server {
   proxy_set_header X-Forwarded-Ssl on;
 
   location / {
-    proxy_pass  http://www.example.com.s3-website.cn-northwest-1.amazonaws.com.cn/;
-  }
-}
-
-server {
-  listen *:443;
-  server_name  ~(?P<sub>.+)+\.example\.com$;
-  location / {
-    if ($sub ~ /^(dev|stage)/) {
-      proxy_pass http://${sub}-container;
-    } else {
-      root /var/opt/gitlab/nginx/html/$sub.example.com;
+    if ($sub ~ ^dev) {
+      proxy_pass http://dev-container;
     }
+    root /var/opt/gitlab/nginx/html/$host;
   }
 }
 
