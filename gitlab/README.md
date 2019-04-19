@@ -74,6 +74,6 @@ vim docker-compose.yml
 # image: gitlab/gitlab-ce:11.0.0-ce.0 => image: gitlab/gitlab-ce:11.9.8-ce.0
 docker-compose down
 docker-compose up -d
-docker exec -it lab_gitlab_1 gitlab-rake db:migrate
-docker restart lab_gitlab_1
+docker exec -it gitlab gitlab-rake db:migrate
+docker restart gitlab
 ```

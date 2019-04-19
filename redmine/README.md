@@ -12,6 +12,13 @@
 $ ./install.sh
 ```
 
+## Retore
+
+```sh
+$ sudo aws s3 cp s3://redmine.example.com/2019-04-18 /srv/docker/mysql/
+$ docker exec -t redmine_mysql mysql -uroot -p51wuzi redmine < /var/lib/mysql/2019-04-18
+```
+
 ## Gitlab Commit Messages
 
 [Referencing-issues-in-commit-messages](http://www.redmine.org/projects/redmine/wiki/RedmineSettings#Referencing-issues-in-commit-messages)
