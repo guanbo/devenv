@@ -45,12 +45,29 @@ docker exec -it gitlab gitlab-rake gitlab:check SANITIZE=true
 
 ## SSL Certificates
 
+### Prerequest
+
+```
+$ sudo yum install python-augeas
+$ sudo yum install python-virtualenv
+$ sudo yum install python-pip
+$ sudo pip install virtualenv
+```
+or 
+```
+$ sudo yum install python-pip
+$ sudo pip install augeas
+$ sudo pip install virtualenv
+```
+
 ### Install Let' encrypt
 
 ```sh
 $ wget https://dl.eff.org/certbot-auto
 $ chmod a+x certbot-auto
 $ sudo mv certbot-auto /usr/local/bin
+$ sudo chown root /usr/local/bin/certboot-auto
+$ sudo chmod 755 /usr/local/bin/certboot-auto
 $ certbot-auto --no-bootstrap
 ```
 
