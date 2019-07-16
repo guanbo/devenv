@@ -79,8 +79,8 @@ $ certbot-auto certonly --manual --preferred-challenges "dns"  --agree-tos --no-
   -m email@example.com \
   --cert-name example.com
 
-$ sudo cp /etc/letsencrypt/live/example.com/fullchain.pem ~/lab/ssl/wildcard.example.com.crt
-$ sudo cp /etc/letsencrypt/live/example.com/privkey.pem ~/lab/ssl/wildcard.example.com.key
+$ sudo cp /etc/letsencrypt/live/example.com/fullchain.pem ~/devenv/gitlab/ssl/wildcard.example.com.crt
+$ sudo cp /etc/letsencrypt/live/example.com/privkey.pem ~/devenv/gitlab/ssl/wildcard.example.com.key
 ```
 
 ## Upgrade Gitlab
